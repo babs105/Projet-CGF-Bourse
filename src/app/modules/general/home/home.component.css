@@ -1,0 +1,4 @@
+.row {
+  background: url(/assets/params/images/ImageBanner.png) fixed center no-repeat; 
+  background-size: cover; /* version standardisée */
+} 
