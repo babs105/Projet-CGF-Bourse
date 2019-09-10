@@ -10,6 +10,10 @@ const routes: Routes = [
     loadChildren: './modules/general/about/about.module#AboutModule',
   },
   {
+    path: 'profile',
+    loadChildren: './modules/application/profile-client/profile-client.module#ProfileClientModule',
+  },
+  {
     path: 'connexion',
     loadChildren: './modules/general/connexion/connexion.module#ConnexionModule',
   },

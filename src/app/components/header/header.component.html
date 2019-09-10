@@ -8,29 +8,45 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-            <ul class="navbar-nav mr-auto" style="font-weight: 600;">
+            <ul class="navbar-nav mr-auto" style="font-weight:600;">
                 <li class="nav-item active mr-3">
                     <a class="nav-link" style="color:#294070" routerLink="/">
-                        Home
+                        Accueil
                     </a>
                 </li>
                 <li class="nav-item active mr-3">
                     <a class="nav-link" routerLink="/about" style="color:#294070">
-                        About
+                        La Bourse
                     </a>
                 </li>
                 <li class="nav-item active mr-3">
+                    <a class="nav-link" routerLink="/about" style="color:#294070">
+                        Placements
+                    </a>
+                </li>
+                <li class="nav-item active mr-3">
+                    <a class="nav-link" routerLink="/about" style="color:#294070">
+                        Actualités
+                    </a>
+                </li>
+                <!-- <li class="nav-item active ">
                     <a class="nav-link" routerLink="/contact" style="color:#294070">
                         Contact
                     </a>
-                </li>
+                </li> -->
             </ul>
             <ul class="navbar-nav ml-auto">
 
-                <li class="nav-item active">
+                <li *ngIf="!show" class="nav-item active">
                     <a class="nav-link">
                         <button type="button" class="btn btn-primary" data-toggle="modal"
                             data-target="#myModalConnexion" style="background-color: #294070">CONNEXION</button>
+                    </a>
+                </li>
+                <li *ngIf="show" class="nav-item active">
+                    <a class="nav-link">
+                        <button type="button" class="btn " data-toggle="modal" data-target="#myModalConnexion"
+                            style="background-color: #294070">DECONNEXION</button>
                     </a>
                 </li>
                 <li class="nav-item active">
@@ -44,7 +60,9 @@
     </nav>
 </header>
 <!-- The Modal connexion -->
-<div class="modal" id="myModalConnexion" data-backdrop="static" data-keyboard="false" role="dialog"
+<app-connexion></app-connexion>
+
+<!-- <div class="modal" id="myModalConnexion" data-backdrop="static" data-keyboard="false" role="dialog"
     aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-xl">
         <div class="modal-content  ">
@@ -62,15 +80,10 @@
                             <div class="bg-primary position-absolute" style="top:5%;bottom:5%;left:17%;right:17%">
 
                             </div>
-                            <div class="bg-primary d-flex flex-column justify-content-center  position-absolute"
+                            <div class="bg-primary d-flex flex-column justify-content-center position-absolute"
                                 style="top:20%;bottom:20%;left:5%;right:5%">
                                 <div class="text-white d-none d-lg-block text-center" style="font-size:2rem">
-                                    Connectez-vous dans votre
-                                    espace
-                                    utilisateur et faites
-                                    tout
-                                    en
-                                    ligne
+                                    Connectez-vous dans votre espace utilisateur et faites tout en ligne
                                 </div>
                             </div>
                         </div>
@@ -82,11 +95,14 @@
                                 <div class="p-4">
                                     <form>
                                         <div class="form-group">
-                                            <input type="email" class="form-control mb-4" placeholder="Adresse Email">
-                                            <input type="password" class="form-control" placeholder="Mot de passe">
+                                            <input type="email" name="email" #log class="form-control mb-4"
+                                                placeholder="Adresse Email">
+                                            <input type="password" name="password" #password class="form-control"
+                                                placeholder="Mot de passe">
                                         </div>
                                     </form>
-                                    <button class="btn btn-block btn-primary">Connexion</button>
+                                    <button class="btn btn-block btn-primary" (click)="login(log.value,password.value)"
+                                        data-dismiss="modal">Connexion</button>
 
                                     <div class="d-flex flex-column justify-content-center mt-5 mb-3 p-4 bg-light ">
                                         <h1 class="text-center" style="font-size:1rem">Nouveau chez CGF Bourse?</h1>
@@ -103,10 +119,12 @@
             </div>
         </div>
     </div>
-</div>
-
+</div> -->
+<!--  -->
 <!-- The Modal Inscription-->
-<div class="modal" id="myModalInscription" data-backdrop="static" role="dialog" data-keyboard="false"
+
+<app-inscription></app-inscription>
+<!-- <div class="modal" id="myModalInscription" data-backdrop="static" role="dialog" data-keyboard="false"
     aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog modal-xl">
         <div class="modal-content  ">
@@ -140,13 +158,16 @@
                                 <div class="p-4">
                                     <form>
                                         <div class="form-group">
-                                            <input type="email" class="form-control required mb-4"
+                                            <input type="email" name="email" #email class="form-control required mb-4"
                                                 placeholder="Votre adresse Email *">
-                                            <input type="password" class="form-control" placeholder="Mot de passe">
+                                            <input type="password" name="password" #pwd class="form-control"
+                                                placeholder="Mot de passe">
                                         </div>
                                     </form>
-                                    <button class="btn btn-block btn-primary">Créer un compte</button>
-
+                                    <button class="btn btn-block btn-primary"
+                                        (click)="register(email.value,pwd.value)">Créer un compte</button>
+                                    <div *ngIf="user" class="alert-success"> Votre Compte a été créé avec succes
+                                        {{ user.email }}</div>
                                     <div class="d-flex flex-column justify-content-center mt-5 mb-3 p-4 bg-light ">
 
                                         <button class="btn btn-outline-primary" id="connecter">Déja
@@ -161,4 +182,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
