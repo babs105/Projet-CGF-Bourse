@@ -1,0 +1,115 @@
+<h5 class="text-center p-3 my-4 text-primary border-bottom border-primary border-2" style="font-weight: 600">Ouverture
+    Compte Epargne
+</h5>
+<form class="p-3">
+    <h6 class="mb-3">IDENTITE</h6>
+    <div class="form-group">
+        <label for="myGenre" class="text-primary">Genre *</label>
+        <div class="form-group">
+            <div class="form-check">
+                <input type="radio" class="form-check-input" name="sexe" [(ngModel)]="form.genre" id="myRadio"
+                    value="m">
+                <label for="myRadio" class="form-check-label">Monsieur</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="form-check">
+                <input type="radio" class="form-check-input" name="sexe" [(ngModel)]="form.genre" id="myRadio1"
+                    value="f">
+                <label for="myRadio1" class="form-check-label">Madame</label>
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="col-12 col-sm-4 form-group">
+            <label class="text-primary" for="myNom">Nom *</label>
+            <input type="text" name="nom" [(ngModel)]="form.nom" id="myNom" class="form-control">
+        </div>
+        <div class="col-12 col-sm-4 form-group">
+            <label class="text-primary" for="myPrenom">Prenom *</label>
+            <input type="text" name="prenom" [(ngModel)]="form.prenom" id="myPrenom" class="form-control">
+        </div>
+        <div class="col-12 col-sm-4 form-group  ">
+            <label class="text-primary" for="mySpro">Situation professionnelle *</label>
+            <select id="mySpro" name="situationPro" [(ngModel)]="form.situationPro" class="form-control">
+                <option value="Developpeur" selected>Developpeur</option>
+                <option value="Banquier">Banquier</option>
+                <option value="Instituteur">Instituteur</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-row">
+
+        <div class="col-12 col-sm-4 form-group">
+            <label class="text-primary" for="myDate">Date de naissance *</label>
+            <input type="date" id="myDate" name=" dateNaissance" [(ngModel)]="form.dateNaissance" class="form-control">
+        </div>
+        <div class="col-12 col-sm-4 form-group ">
+            <label class="text-primary" for="myLieuNais">Lieu de naissance *</label>
+            <input type="text" id="myLieuNais" name=" lieuNaissance" [(ngModel)]="form.lieuNaissance"
+                class="form-control">
+        </div>
+        <div class="col-12 col-sm-4 form-group">
+            <label class="text-primary" for="myNation">Nationalité *</label>
+            <input type="text" id="myNation" name="nationalite" [(ngModel)]="form.nationalite" class="form-control">
+        </div>
+    </div>
+    <h6 class="my-3">ADRESSE</h6>
+    <div class="form-row">
+        <div class="col-12 col-sm-4 form-group">
+            <label class="text-primary" for="myPays">Pays *</label>
+            <select id="myPays" name="pays" [(ngModel)]="form.pays" class="form-control">
+                <option value="Developpeur" selected>Senegal</option>
+                <option value="France">France</option>
+                <option value="Niger">Niger</option>
+            </select>
+        </div>
+        <div class="col-12 col-sm-4 form-group">
+            <label class="text-primary" for="myVille">Ville *</label>
+            <input type="text" id="myVille" name="ville" [(ngModel)]="form.ville" class="form-control">
+        </div>
+        <div class="col-12 col-sm-4 form-group">
+            <label class="text-primary" for="myRegion">Région:</label>
+            <input type="text" id="myRegion" name="region" [(ngModel)]="form.region" class="form-control">
+        </div>
+    </div>
+    <div class="form-row">
+
+        <div class="col-12 col-sm-4 form-group">
+            <label class="text-primary" for="myAdresse">Adresse *</label>
+            <input type="text" id="myAdresse" name="adresse" [(ngModel)]="form.adresse" class="form-control">
+        </div>
+        <div class="col-12 col-sm-4 form-group">
+            <label class="text-primary" for="myTel">Téléphone *</label>
+            <input type="tel" id="myTel" name="telephone" [(ngModel)]="form.telephone" class="form-control">
+        </div>
+    </div>
+    <h6 class="my-3">MES DOCUMENTS JUSTICATIFS</h6>
+    <div class="form-row">
+
+        <div class="col-12 col-sm-4 form-group">
+            <label class="text-primary" for="myPhoto">Selectionner photo *</label>
+            <input type="file" id="myPhoto" #photoRef name="photo" (change)="chargerPhoto(photoRef.files)"
+                class="form-control-file">
+        </div>
+        <div class="col-12 col-sm-4 form-group">
+            <label class="text-primary" for="myCni">Carte d'identité* </label>
+            <input type="file" id="myCni" #cniRef name="cni" (change)="chargerCni(cniRef.files)"
+                class="form-control-file">
+        </div>
+        <div class="col-12 col-sm-4 form-group">
+            <label class="text-primary" for="myFacture">Facture d'eau ou Electricité * </label>
+            <input type="file" id="myFacture" #factureRef name="facture" (change)="chargerFacture(factureRef.files)"
+                class="form-control-file">
+        </div>
+    </div>
+</form>
+<div class="row p-3">
+    <div class="col-12 col-sm-4 mx-auto">
+        <button type="button" class="btn btn-block btn-primary" (click)=envoyerForm()>ENVOYER</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 col-sm-8 mx-auto text-alert ">
+    </div>
+</div>

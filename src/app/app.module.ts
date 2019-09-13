@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { FormsModule } from "@angular/forms";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './modules/general/home/home.component';
@@ -14,15 +14,15 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     AppComponent,
     HomeComponent,
-    NotFoundComponent,
-
+    NotFoundComponent
   ],
   imports: [
     // BrowserModule.withServerTransition({ appId: 'cgf-bourse' }),
     AppRoutingModule,
     HttpClientModule,
     HeaderModule,
-    FooterModule
+    FooterModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

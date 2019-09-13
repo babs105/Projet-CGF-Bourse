@@ -13,9 +13,9 @@ export class ConnexionComponent implements OnInit {
   @ViewChild('btnClose', { static: false })
   btnClose: ElementRef;
 
+
   constructor(private connexionService: ConnexionService,
-    private router: Router,
-    private renderer: Renderer2) { }
+    private router: Router) { }
 
   ngOnInit() {
   }
@@ -26,8 +26,9 @@ export class ConnexionComponent implements OnInit {
         this.userLogin = data.response;
         if (this.userLogin.login) {
           this.btnClose.nativeElement.click();
+          const userId=this.userLogin._id
           console.log("data", this.userLogin.login)
-          this.router.navigate(['/profile']);
+          this.router.navigate(['/profile',userId]);
         }
         console.log("user connecter", this.userLogin);
       });

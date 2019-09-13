@@ -10,7 +10,7 @@ const routes: Routes = [
     loadChildren: './modules/general/about/about.module#AboutModule',
   },
   {
-    path: 'profile',
+    path: 'profile/:userId',
     loadChildren: './modules/application/profile-client/profile-client.module#ProfileClientModule',
   },
   {
