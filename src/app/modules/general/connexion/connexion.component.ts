@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Renderer2 } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Renderer2, Output, EventEmitter } from '@angular/core';
 import { ConnexionService } from './services/connexion.service';
 import { Router } from '@angular/router';
 
@@ -9,28 +9,58 @@ import { Router } from '@angular/router';
 })
 export class ConnexionComponent implements OnInit {
 
-  userLogin;
+
   @ViewChild('btnClose', { static: false })
   btnClose: ElementRef;
 
+  form: {
+    login: String,
+    password: String
+  }
+  userLogin;
+
+
+  @Output()
+  etatLogin = new EventEmitter<boolean>();
+
 
   constructor(private connexionService: ConnexionService,
-    private router: Router) { }
+    private router: Router) {
+    this.form = {
+      login: '',
+      password: ''
+
+    }
+  }
+
+  resetForm() {
+    this.form = {
+      login: '',
+      password: ''
+
+    }
+    this.userLogin = null;
+  }
 
   ngOnInit() {
   }
-  login(login, password) {
-    console.log("user trouver", { login, password });
-    this.connexionService.loginUser({ login, password })
-      .subscribe((data: { status: string, response: {} }) => {
+  connecter() {
+    console.log("user trouver", this.form);
+    this.connexionService.loginUser(this.form)
+      .subscribe((data: any) => {
+
         this.userLogin = data.response;
         if (this.userLogin.login) {
+          this.etatLogin.emit(true);
+
+          const userId = this.userLogin._id;
+          this.resetForm();
           this.btnClose.nativeElement.click();
-          const userId=this.userLogin._id
-          console.log("data", this.userLogin.login)
-          this.router.navigate(['/profile',userId]);
+          this.router.navigate(['/profile', userId]);
+
         }
-        console.log("user connecter", this.userLogin);
+
       });
+
   }
 }

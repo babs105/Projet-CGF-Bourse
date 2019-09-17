@@ -13,5 +13,6 @@ export class ConnexionService {
 
   loginUser(user) {
     return this.http.post(`${environment.BASE_API_URL}/user/login`, user);
+
   }
 }

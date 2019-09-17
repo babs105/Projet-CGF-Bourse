@@ -29,17 +29,43 @@
 
                                 <h3 class="text-primary text-center pb-3">CONNECTEZ-VOUS</h3>
                                 <div class="p-4">
-                                    <form>
+                                    <form #connexionForm="ngForm" (ngSubmit)="connecter()">
                                         <div class="form-group">
-                                            <input type="email" name="email" #log class="form-control mb-4"
-                                                placeholder="Adresse Email">
-                                            <input type="password" name="password" #password class="form-control"
-                                                placeholder="Mot de passe">
+                                            <input type="email" name="login" id="login" required
+                                                [(ngModel)]="form.login" #login="ngModel" minlength="7"
+                                                class="form-control mb-3" placeholder="Adresse Email">
+                                            <div *ngIf="login.invalid && (login.dirty || login.touched)"
+                                                class="alert alert-danger">
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                    aria-label="Close">x</button>
+                                                <div *ngIf="login.errors.required">
+                                                    Email obligatoire.
+                                                </div>
+                                                <div *ngIf="login.errors.minlength">
+                                                    Email doit avoir au min 7 caractères.
+                                                </div>
+                                            </div>
+                                            <input type="password" name="password" id="password" required
+                                                [(ngModel)]="form.password" #password="ngModel" minlength="7"
+                                                class="form-control" placeholder="Mot de passe">
+                                            <div *ngIf="password.invalid && (password.dirty || password.touched)"
+                                                class="alert alert-danger">
+                                                <button type="button" class="close" data-dismiss="alert"
+                                                    aria-label="Close">x</button>
+                                                <div *ngIf="password.errors.required">
+                                                    Mot de passe obligatoire.
+                                                </div>
+                                                <div *ngIf="password.errors.minlength">
+                                                    Mot de passe doit avoir au min 7 caractères.
+                                                </div>
+                                            </div>
                                         </div>
+                                        <button type="submit" class="btn btn-block btn-primary">Connexion</button>
                                     </form>
-                                    <button class="btn btn-block btn-primary"
-                                        (click)="login(log.value,password.value)">Connexion</button>
-                                    <div *ngIf="userLogin" class="my-1 alert-danger"> {{userLogin}}
+
+                                    <div *ngIf="userLogin" class="my-1 alert alert-danger">
+                                        <button type="button" class="close" data-dismiss="alert"
+                                            aria-label="Close">x</button> {{userLogin}}
                                     </div>
                                     <div class="d-flex flex-column justify-content-center mt-5 mb-3 p-4 bg-light ">
                                         <h1 class="text-center" style="font-size:1rem">Nouveau chez CGF Bourse?</h1>

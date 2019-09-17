@@ -32,18 +32,24 @@
                                 <div class="p-4">
                                     <form>
                                         <div class="form-group">
-                                            <input type="email" name="email" #email class="form-control required mb-4"
-                                                placeholder="Votre adresse Email *">
-                                            <input type="password" name="password" #pwd class="form-control"
-                                                placeholder="Mot de passe">
+                                            <input type="text" name="prenom" [(ngModel)]="form.prenom"
+                                                class="form-control required mb-4" placeholder="Votre Prenom *">
+                                            <input type="text" name="nom" [(ngModel)]="form.nom"
+                                                class="form-control required mb-4" placeholder="Votre Nom *">
+                                            <input type="email" name="email" [(ngModel)]="form.login"
+                                                class="form-control required mb-4" placeholder="Votre adresse Email *">
+                                            <input type="password" name="password" [(ngModel)]="form.password"
+                                                class="form-control mb-4" placeholder="Mot de passe">
+                                            <input type="password" name="password2" [(ngModel)]="form.password2"
+                                                class="form-control" placeholder="Confirmer Mot de passe">
                                         </div>
                                     </form>
-                                    <button class="btn btn-block btn-primary"
-                                        (click)="register(email.value,pwd.value)">Créer un compte</button>
-                                    <div *ngIf="userRegister" class=" my-1 alert-success"> Votre Compte a été créé avec
-                                        success
+                                    <button class="btn btn-block btn-primary" (click)="register()">Créer un
+                                        compte</button>
+                                    <div *ngIf="userRegister" class=" my-1 alert-success"> Inscription réussie:
+                                        <p>avec vos Identifiants:</p>
                                         {{ userRegister.login }}</div>
-                                    <div class="d-flex flex-column justify-content-center mt-5 mb-3 p-4 bg-light ">
+                                    <div class="d-flex flex-column justify-content-center mt-3 mb-2 p-3 bg-light ">
 
                                         <button class="btn btn-outline-primary" id="connecter">Déja
                                             inscrit? Connectez-vous</button>

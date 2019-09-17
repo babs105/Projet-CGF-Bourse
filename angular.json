@@ -22,7 +22,22 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/manifest.webmanifest"
+              "src/manifest.webmanifest",
+              {
+                "glob": "**/*",
+                "input": "node_modules/ngx-extended-pdf-viewer/assets/locale",
+                "output": "/assets/locale/"
+              },
+              {
+                "glob": "**/*",
+                "input": "node_modules/ngx-extended-pdf-viewer/assets/images",
+                "output": "/assets/images/"
+              },
+              {
+                "glob": "pdf.worker-es5.js",
+                "input": "node_modules/ngx-extended-pdf-viewer/ngx-extended-pdf-viewer/assets",
+                "output": "/assets/"
+              }
             ],
             "styles": [
               "src/styles.css",
@@ -32,7 +47,9 @@
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "src/assets/params/js/index.js"
+              "src/assets/params/js/index.js",
+              "node_modules/ngx-extended-pdf-viewer/assets/pdf-es5.js",
+              "node_modules/ngx-extended-pdf-viewer/assets/viewer-es5.js"
             ]
           },
           "configurations": {
@@ -148,6 +165,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "CGF-BOURSE"
 }

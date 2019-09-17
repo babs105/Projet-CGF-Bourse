@@ -11,6 +11,15 @@ export class ProfileClientService {
 
   }
 
+
+
+  getUser(userId) {
+    return this.http.get(`${environment.BASE_API_URL}/user/${userId}`);
+
+  }
+
+
+
   envoyerPhoto(filePhoto, userId) {
     return this.http.put(`${environment.BASE_API_URL}/user/${userId}/attach-photo`, filePhoto);
 
@@ -26,4 +35,9 @@ export class ProfileClientService {
   envoyerForm(formData, userId) {
     return this.http.put(`${environment.BASE_API_URL}/user/${userId}/ouvrir-compte`, formData);
   }
+  envoyerConvention(fileConvention, userId) {
+    return this.http.put(`${environment.BASE_API_URL}/user/${userId}/attach-convention`, fileConvention);
+
+  }
+
 }

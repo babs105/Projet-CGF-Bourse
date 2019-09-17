@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FormCoventionComponent } from './form-covention.component';
+import { BackOfficeComponent } from './back-office.component';
 
-describe('FormCoventionComponent', () => {
-  let component: FormCoventionComponent;
-  let fixture: ComponentFixture<FormCoventionComponent>;
+describe('BackOfficeComponent', () => {
+  let component: BackOfficeComponent;
+  let fixture: ComponentFixture<BackOfficeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormCoventionComponent ]
+      declarations: [ BackOfficeComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FormCoventionComponent);
+    fixture = TestBed.createComponent(BackOfficeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

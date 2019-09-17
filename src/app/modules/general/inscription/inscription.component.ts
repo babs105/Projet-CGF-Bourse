@@ -8,15 +8,46 @@ import { InscriptionService } from './services/inscription.service';
 })
 export class InscriptionComponent implements OnInit {
   userRegister;
-  constructor(private inscriptionService: InscriptionService) { }
+  form: {
+    prenom: String,
+    nom: String,
+    login: String,
+    password: String
+    password2: String
+  }
+  constructor(private inscriptionService: InscriptionService) {
+    this.form = {
+      prenom: '',
+      nom: '',
+      login: '',
+      password: '',
+      password2: ''
+    }
+  }
 
   ngOnInit() {
   }
-  register(login, password) {
-    console.log("data", { login, password })
-    this.inscriptionService.registerUser({ login, password })
+  resetForm() {
+    this.form = {
+      prenom: '',
+      nom: '',
+      login: '',
+      password: '',
+      password2: ''
+    }
+  }
+  confirmPassword() {
+    if (this.form.password !== this.form.password2) {
+      return false
+    } else
+      return true
+  }
+  register() {
+    console.log("data", this.form)
+    this.inscriptionService.registerUser(this.form)
       .subscribe((data: { status: string, response: {} }) => {
         this.userRegister = data.response;
+        this.resetForm();
         console.log("user inscrit", this.userRegister);
       });
 

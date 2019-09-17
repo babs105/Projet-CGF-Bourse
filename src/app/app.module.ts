@@ -8,7 +8,9 @@ import { NotFoundComponent } from './modules/general/not-found/not-found.compone
 import { HeaderModule } from './components/header/header.module';
 import { FooterModule } from './components/footer/footer.module';
 import { HttpClientModule } from '@angular/common/http';
-
+import { ImageViewerModule } from 'ng2-image-viewer';
+import { BackOfficeComponent } from './modules/application/back-office/back-office.component';
+import { BackOfficeModule } from './modules/application/back-office/back-office.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     HeaderModule,
     FooterModule,
-    FormsModule
+    FormsModule,
+    BackOfficeModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

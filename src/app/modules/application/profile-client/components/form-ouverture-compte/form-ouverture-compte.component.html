@@ -46,7 +46,7 @@
         </div>
         <div class="col-12 col-sm-4 form-group ">
             <label class="text-primary" for="myLieuNais">Lieu de naissance *</label>
-            <input type="text" id="myLieuNais" name=" lieuNaissance" [(ngModel)]="form.lieuNaissance"
+            <input type="text" id="myLieuNais" name=" lieuNaissance" [(ngModel)]="form.lieuNaissance "
                 class="form-control">
         </div>
         <div class="col-12 col-sm-4 form-group">
@@ -87,20 +87,45 @@
     <h6 class="my-3">MES DOCUMENTS JUSTICATIFS</h6>
     <div class="form-row">
 
-        <div class="col-12 col-sm-4 form-group">
+        <!-- <div class="col-12 col-sm-4 form-group">
             <label class="text-primary" for="myPhoto">Selectionner photo *</label>
             <input type="file" id="myPhoto" #photoRef name="photo" (change)="chargerPhoto(photoRef.files)"
                 class="form-control-file">
+        </div> -->
+        <div class="col-12 col-sm-4 form-group">
+
+            <div class="w-5">
+                <img class="" (click)="showImg(photoSrc)" style="height:40px;width:40px"
+                    [src]="_d.bypassSecurityTrustUrl(photoSrc)">
+            </div>
+            <label class=" btn btn-outline-primary" for="myPhoto">Selectionner photo
+                <input type="file" id="myPhoto" #photoRef name="photo" (change)="chargerPhoto(photoRef.files)"
+                    class="form-control-file" hidden>
+            </label>
         </div>
         <div class="col-12 col-sm-4 form-group">
-            <label class="text-primary" for="myCni">Carte d'identité* </label>
-            <input type="file" id="myCni" #cniRef name="cni" (change)="chargerCni(cniRef.files)"
-                class="form-control-file">
+
+            <div class="w-5">
+                <img class="" (click)="showImg(cniSrc)" style="height:40px;width:40px"
+                    [src]="_d.bypassSecurityTrustUrl(cniSrc)">
+            </div>
+            <label class=" btn btn-outline-primary" for="myCni">Carte d'identité
+                <input type="file" id="myCni" #cniRef name="cni" (change)="chargerCni(cniRef.files)"
+                    class="form-control-file" hidden>
+            </label>
+
         </div>
         <div class="col-12 col-sm-4 form-group">
-            <label class="text-primary" for="myFacture">Facture d'eau ou Electricité * </label>
-            <input type="file" id="myFacture" #factureRef name="facture" (change)="chargerFacture(factureRef.files)"
-                class="form-control-file">
+
+            <div class="w-5">
+                <img class="" (click)="showImg(factureSrc)" style="height:40px;width:40px"
+                    [src]="_d.bypassSecurityTrustUrl(factureSrc)">
+            </div>
+            <label class=" btn btn-outline-primary" for="myFacture">Facture d'eau ou Electricité
+                <input type="file" id="myFacture" #factureRef name="facture" (change)="chargerFacture(factureRef.files)"
+                    class="form-control-file" hidden>
+            </label>
+
         </div>
     </div>
 </form>
@@ -112,4 +137,32 @@
 <div class="row">
     <div class="col-12 col-sm-8 mx-auto text-alert ">
     </div>
+</div>
+<div class="row m-4">
+    <div class="col-12 col-sm-8 mx-auto ">
+        <p class="text-center alert-danger">Pour pouvoir telecharger ou signer la convention vos documents
+            justificatifs doivent etre
+            validés</p>
+
+    </div>
+</div>
+<form>
+    <div class="form-row">
+        <div class="col-12 col-sm-12 mx-auto ">
+            <h5 class="text-center">La Convention</h5>
+            <div class=" mx-auto ">
+                <ngx-extended-pdf-viewer [src]="conventionSrc" useBrowserLocale="true" height="80vh">
+                </ngx-extended-pdf-viewer>
+                <!-- <app-image-viewer [images]="[conventionSrc]" [idContainer]="'idOnHTML'" [loadOnInit]="true">
+                </app-image-viewer> -->
+                <img class="w-100 " [src]="_d.bypassSecurityTrustUrl(conventionSrc)">
+                <input type="file" #conventionRef name="convention" id="myConvention"
+                    (change)="chargerConvention(conventionRef.files)" class="form-control-file">
+            </div>
+        </div>
+    </div>
+</form>
+<div *ngIf="showImgInModal" style="position: fixed; top: 5%; left: 5%; width: 100%; height: 700px; background: gray;">
+    <div (click)="hideImg()" style="position: absolute; right: 5%; top: 5%; color: white; cursor: pointer;">Fermer</div>
+    <img width="90%" height="100%" [src]="_d.bypassSecurityTrustUrl(imgToShow)">
 </div>

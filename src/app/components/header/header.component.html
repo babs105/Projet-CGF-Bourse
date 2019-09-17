@@ -8,7 +8,7 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarsExampleDefault">
-            <ul class="navbar-nav mr-auto" style="font-weight:600;">
+            <ul *ngIf="!isLogging" class="navbar-nav mr-auto" style="font-weight:600;">
                 <li class="nav-item active mr-3">
                     <a class="nav-link" style="color:#294070" routerLink="/">
                         Accueil
@@ -37,19 +37,19 @@
             </ul>
             <ul class="navbar-nav ml-auto">
 
-                <li *ngIf="!show" class="nav-item active">
+                <li *ngIf="!isLogging" class="nav-item active">
                     <a class="nav-link">
                         <button type="button" class="btn btn-primary" data-toggle="modal"
                             data-target="#myModalConnexion" style="background-color: #294070">CONNEXION</button>
                     </a>
                 </li>
-                <li *ngIf="show" class="nav-item active">
+                <li *ngIf="isLogging" class="nav-item active">
                     <a class="nav-link">
-                        <button type="button" class="btn " data-toggle="modal" data-target="#myModalConnexion"
+                        <button type="button" class="btn btn-primary " (click)="logout()"
                             style="background-color: #294070">DECONNEXION</button>
                     </a>
                 </li>
-                <li class="nav-item active">
+                <li *ngIf="!isLogging" class="nav-item active">
                     <a class="nav-link">
                         <button type="button" class="btn btn-outline-primary" data-toggle="modal"
                             data-target="#myModalInscription">INSCRIPTION</button>
@@ -60,7 +60,7 @@
     </nav>
 </header>
 <!-- The Modal connexion -->
-<app-connexion></app-connexion>
+<app-connexion (etatLogin)="islogging($event)"></app-connexion>
 
 <!-- <div class="modal" id="myModalConnexion" data-backdrop="static" data-keyboard="false" role="dialog"
     aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">

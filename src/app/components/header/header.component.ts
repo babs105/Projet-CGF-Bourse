@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { InscriptionService } from 'src/app/services/inscription.service';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -11,14 +11,30 @@ import { Route, Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
 
   // user: {}
-  // user2: {}
-  // show = false;
-  constructor(
+  // user2: 
+  @Input()
+  isLogging = false;
+
+  constructor(private router: Router
     // private inscriptionService: InscriptionService, private route: Router
   ) { }
 
   ngOnInit() {
+    // if (!this.isLogging) {
+    //   this.router.navigate(['/']);
+    // }
   }
+
+  islogging(etatLogging: boolean) {
+    this.isLogging = etatLogging;
+
+
+  }
+  logout() {
+    this.isLogging = false;
+    this.router.navigate(['/']);
+  }
+
   // register(email, password) {
 
   //   console.log("User:", { email, password });

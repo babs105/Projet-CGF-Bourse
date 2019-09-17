@@ -4,7 +4,7 @@ import { HomeComponent } from './modules/general/home/home.component';
 import { NotFoundComponent } from './modules/general/not-found/not-found.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, },
+  { path: '', component: HomeComponent },
   {
     path: 'about',
     loadChildren: './modules/general/about/about.module#AboutModule',
@@ -12,6 +12,10 @@ const routes: Routes = [
   {
     path: 'profile/:userId',
     loadChildren: './modules/application/profile-client/profile-client.module#ProfileClientModule',
+  },
+  {
+    path: 'backoffice',
+    loadChildren: './modules/application/back-office/back-office.module#BackOfficeModule',
   },
   {
     path: 'connexion',

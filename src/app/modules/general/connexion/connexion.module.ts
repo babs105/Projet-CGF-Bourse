@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { FormsModule } from "@angular/forms";
 import { ConnexionRoutingModule } from './connexion-routing.module';
 import { ConnexionComponent } from './connexion.component';
 
@@ -8,9 +8,10 @@ import { ConnexionComponent } from './connexion.component';
   declarations: [ConnexionComponent],
   imports: [
     CommonModule,
-    ConnexionRoutingModule
+    ConnexionRoutingModule,
+    FormsModule
   ],
-  exports:[
+  exports: [
     ConnexionComponent
   ]
 })
