@@ -50,14 +50,21 @@ export class ConnexionComponent implements OnInit {
       .subscribe((data: any) => {
 
         this.userLogin = data.response;
-        if (this.userLogin.login) {
+        if (this.userLogin.login && this.userLogin.admin === true) {
+          this.etatLogin.emit(true);
+
+          const userId = this.userLogin._id;
+          this.resetForm();
+          this.btnClose.nativeElement.click();
+          this.router.navigate(['/backoffice']);
+
+        } else {
           this.etatLogin.emit(true);
 
           const userId = this.userLogin._id;
           this.resetForm();
           this.btnClose.nativeElement.click();
           this.router.navigate(['/profile', userId]);
-
         }
 
       });

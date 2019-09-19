@@ -3,11 +3,11 @@ import { ProfileClientService } from '../../services/profile-client.service';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment.prod';
-
 @Component({
   selector: 'app-form-ouverture-compte',
   templateUrl: './form-ouverture-compte.component.html',
   styleUrls: ['./form-ouverture-compte.component.css']
+
 })
 export class FormOuvertureCompteComponent implements OnInit {
 
@@ -28,6 +28,8 @@ export class FormOuvertureCompteComponent implements OnInit {
 
   }
   photo;
+  photoName;
+  photoSrc;
   userId;
   cni;
   facture;
@@ -37,7 +39,7 @@ export class FormOuvertureCompteComponent implements OnInit {
   userData;
   userLogin;
   filesSrc = `${environment.BASE_API_URL}/attachments/`;
-  photoSrc = "";
+  photoRemoteSrc;
   cniSrc = "";
   factureSrc = "";
   convention;
@@ -64,10 +66,13 @@ export class FormOuvertureCompteComponent implements OnInit {
     }
     this.userId = this.activedRoute.snapshot.paramMap.get('userId');
     this.profileClientService.getUser(this.userId)
-      .subscribe((data: { status: String, response: [] }) => {
+      .subscribe((data: { status: String; response: [] }) => {
 
         this.userLogin = data.response;
+        this.photoName = this.userLogin.photo;
+        this.photoRemoteSrc = this.filesSrc + this.photoName;
         console.log("user profile", this.userLogin)
+        console.log("photoName", this.photoName);
         this.initializeForm();
 
       });
@@ -79,7 +84,7 @@ export class FormOuvertureCompteComponent implements OnInit {
 
   initializeForm() {
     this.form = this.userLogin;
-    this.photoSrc = this.filesSrc + this.userLogin.photo;
+    this.photoRemoteSrc = this.filesSrc + this.userLogin.photo;
     this.cniSrc = this.filesSrc + this.userLogin.cni;
     this.factureSrc = this.filesSrc + this.userLogin.facture;
 
@@ -95,6 +100,7 @@ export class FormOuvertureCompteComponent implements OnInit {
 
 
   }
+
   chargerCni(files) {
     this.cni = files[0];
     this.envoyerCni();
@@ -108,10 +114,16 @@ export class FormOuvertureCompteComponent implements OnInit {
     filePhoto.append('photo', this.photo);
     this.profileClientService.envoyerPhoto(filePhoto, this.userId).subscribe((data: any) => {
       this.fileTof = data.response;
-
+      this.changeImgPhoto(this.filesSrc + this.fileTof.photo);
       console.log("file", this.fileTof)
 
+
+
     });
+  }
+  changeImgPhoto(url) {
+    this.photoRemoteSrc = url;
+
   }
   envoyerCni() {
     const fileCni = new FormData();
@@ -153,6 +165,7 @@ export class FormOuvertureCompteComponent implements OnInit {
       console.log("fileconvention", this.fileConventionResponse)
     });
   }
+
 
   showImg(url) {
     this.imgToShow = url;

@@ -1,21 +1,21 @@
-<h5 class="text-center p-3 my-4 text-primary border-bottom border-primary border-2" style="font-weight: 600">Ouverture
+<h4 class="text-center p-3 my-4 text-primary border-bottom border-primary border-2" style="font-weight: 600">Ouverture
     Compte Epargne
-</h5>
-<form class="p-3">
+</h4>
+<form class="p-3 font-weight-bold">
     <h6 class="mb-3">IDENTITE</h6>
     <div class="form-group">
         <label for="myGenre" class="text-primary">Genre *</label>
-        <div class="form-group">
-            <div class="form-check">
+        <div class="form-group ">
+            <div class="form-check font-weight-normal">
                 <input type="radio" class="form-check-input" name="sexe" [(ngModel)]="form.genre" id="myRadio"
-                    value="m">
+                    value="Monsieur">
                 <label for="myRadio" class="form-check-label">Monsieur</label>
             </div>
         </div>
         <div class="form-group">
-            <div class="form-check">
+            <div class="form-check font-weight-normal">
                 <input type="radio" class="form-check-input" name="sexe" [(ngModel)]="form.genre" id="myRadio1"
-                    value="f">
+                    value="Madame">
                 <label for="myRadio1" class="form-check-label">Madame</label>
             </div>
         </div>
@@ -59,7 +59,7 @@
         <div class="col-12 col-sm-4 form-group">
             <label class="text-primary" for="myPays">Pays *</label>
             <select id="myPays" name="pays" [(ngModel)]="form.pays" class="form-control">
-                <option value="Developpeur" selected>Senegal</option>
+                <option value="Senegal" selected>Senegal</option>
                 <option value="France">France</option>
                 <option value="Niger">Niger</option>
             </select>
@@ -96,12 +96,15 @@
 
             <div class="w-5">
                 <img class="" (click)="showImg(photoSrc)" style="height:40px;width:40px"
-                    [src]="_d.bypassSecurityTrustUrl(photoSrc)">
+                    [src]="_d.bypassSecurityTrustUrl(photoRemoteSrc)">
             </div>
             <label class=" btn btn-outline-primary" for="myPhoto">Selectionner photo
                 <input type="file" id="myPhoto" #photoRef name="photo" (change)="chargerPhoto(photoRef.files)"
                     class="form-control-file" hidden>
             </label>
+            <div class="alert-danger" *ngIf="userLogin.photoArevoir">
+                Veuillez revoir la photo svp
+            </div>
         </div>
         <div class="col-12 col-sm-4 form-group">
 
@@ -113,10 +116,11 @@
                 <input type="file" id="myCni" #cniRef name="cni" (change)="chargerCni(cniRef.files)"
                     class="form-control-file" hidden>
             </label>
-
+            <div class="alert-danger" *ngIf="userLogin.cniArevoir">
+                Veuillez revoir la CNI svp
+            </div>
         </div>
         <div class="col-12 col-sm-4 form-group">
-
             <div class="w-5">
                 <img class="" (click)="showImg(factureSrc)" style="height:40px;width:40px"
                     [src]="_d.bypassSecurityTrustUrl(factureSrc)">
@@ -125,7 +129,9 @@
                 <input type="file" id="myFacture" #factureRef name="facture" (change)="chargerFacture(factureRef.files)"
                     class="form-control-file" hidden>
             </label>
-
+            <div class="alert-danger" *ngIf="userLogin.factureArevoir">
+                Veuillez revoir la facture svp
+            </div>
         </div>
     </div>
 </form>
@@ -135,8 +141,14 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-12 col-sm-8 mx-auto text-alert ">
+    <div *ngIf="userData?.demandeOuverture==true" class="col-12 col-sm-8 mx-auto alert-success ">
+        <p class="text-center "> Votre demande d'ouverture de compte est envoyée avec Success!
+        </p>
     </div>
+    <!-- <div *ngIf="userData?.demandeOuverture==true" class="col-12 col-sm-8 mx-auto alert-success ">
+        <p class="text-center "> Votre demande d'ouverture de compte est envoyée avec Success!
+        </p>
+    </div> -->
 </div>
 <div class="row m-4">
     <div class="col-12 col-sm-8 mx-auto ">
@@ -147,21 +159,28 @@
     </div>
 </div>
 <form>
-    <div class="form-row">
-        <div class="col-12 col-sm-12 mx-auto ">
-            <h5 class="text-center">La Convention</h5>
-            <div class=" mx-auto ">
-                <ngx-extended-pdf-viewer [src]="conventionSrc" useBrowserLocale="true" height="80vh">
-                </ngx-extended-pdf-viewer>
-                <!-- <app-image-viewer [images]="[conventionSrc]" [idContainer]="'idOnHTML'" [loadOnInit]="true">
-                </app-image-viewer> -->
-                <img class="w-100 " [src]="_d.bypassSecurityTrustUrl(conventionSrc)">
-                <input type="file" #conventionRef name="convention" id="myConvention"
-                    (change)="chargerConvention(conventionRef.files)" class="form-control-file">
+    <fieldset disabled="!userLogin.etatDossier">
+        <div class="form-row">
+            <div class="col-12 col-sm-4 mx-auto ">
+                <h5 class="text-center">La Convention</h5>
+
+
+                <pdf-viewer [src]="conventionSrc" [fit-to-page]="true" [original-size]="false" [render-text]="false"
+                    style="display:block;">
+                </pdf-viewer>
+
+
+                <!-- ! <img class="w-100 " [src]="_d.bypassSecurityTrustUrl(conventionSrc)"> -->
+                <div class="form-group">
+                    <input type="file" #conventionRef name="convention" id="myConvention"
+                        (change)="chargerConvention(conventionRef.files)" class="form-control-file">
+                </div>
             </div>
         </div>
-    </div>
+    </fieldset>
 </form>
+
+
 <div *ngIf="showImgInModal" style="position: fixed; top: 5%; left: 5%; width: 100%; height: 700px; background: gray;">
     <div (click)="hideImg()" style="position: absolute; right: 5%; top: 5%; color: white; cursor: pointer;">Fermer</div>
     <img width="90%" height="100%" [src]="_d.bypassSecurityTrustUrl(imgToShow)">

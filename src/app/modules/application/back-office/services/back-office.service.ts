@@ -8,11 +8,15 @@ import { HttpClient } from '@angular/common/http';
 })
 export class BackOfficeService {
 
-  constructor(private http:HttpClient) {
+  constructor(private http: HttpClient) {
 
-   }
+  }
 
-   getUser(){
+  getUser() {
     return this.http.get(`${environment.BASE_API_URL}/user`);
-   }
+  }
+  validerDoc(dataForm, userId) {
+    return this.http.put(`${environment.BASE_API_URL}/user/${userId}/valider-doc`, dataForm);
+
+  }
 }
