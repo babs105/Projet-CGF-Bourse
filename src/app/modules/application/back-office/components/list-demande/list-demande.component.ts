@@ -12,6 +12,7 @@ export class ListDemandeComponent implements OnInit {
 
   usersDemande;
   userValidateDoc;
+  userToLoad;
   form: {
     photoArevoir: Boolean,
     factureArevoir: Boolean,
@@ -30,10 +31,10 @@ export class ListDemandeComponent implements OnInit {
     }
   }
   ngOnInit() {
-    this.getUser();
+    this.getUsers();
   }
-  getUser() {
-    this.backofficeService.getUser().subscribe((data: { status: String; response: [] }) => {
+  getUsers() {
+    this.backofficeService.getUsers().subscribe((data: { status: String; response: [] }) => {
       this.usersDemande = data.response;
 
 
@@ -41,6 +42,21 @@ export class ListDemandeComponent implements OnInit {
 
 
     });
+  }
+  chargerUser(userId) {
+    console.log("userId", userId);
+    this.backofficeService.getUser(userId)
+      .subscribe((data: { status: string; response: {} }) => {
+        this.userToLoad = data.response;
+        console.log("userToLoad", this.userToLoad);
+        this.initForm();
+      });
+  }
+  initForm() {
+    this.form.photoArevoir = this.userToLoad.photoArevoir;
+    this.form.cniArevoir = this.userToLoad.cniArevoir;
+    this.form.factureArevoir = this.userToLoad.factureArevoir;
+    this.form.commentaire = this.userToLoad.commentaire;
   }
   validerDoc(userId) {
     console.log("userid", userId);

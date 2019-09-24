@@ -8,20 +8,21 @@ import { InscriptionService } from './services/inscription.service';
 })
 export class InscriptionComponent implements OnInit {
   userRegister;
+  password2
   form: {
     prenom: String,
     nom: String,
     login: String,
     password: String
-    password2: String
+
   }
   constructor(private inscriptionService: InscriptionService) {
     this.form = {
       prenom: '',
       nom: '',
       login: '',
-      password: '',
-      password2: ''
+      password: ''
+
     }
   }
 
@@ -32,12 +33,13 @@ export class InscriptionComponent implements OnInit {
       prenom: '',
       nom: '',
       login: '',
-      password: '',
-      password2: ''
+      password: ''
+
     }
+    this.password2 = "";
   }
   confirmPassword() {
-    if (this.form.password !== this.form.password2) {
+    if (this.form.password !== this.password2) {
       return false
     } else
       return true
@@ -45,7 +47,7 @@ export class InscriptionComponent implements OnInit {
   register() {
     console.log("data", this.form)
     this.inscriptionService.registerUser(this.form)
-      .subscribe((data: { status: string, response: {} }) => {
+      .subscribe((data: { status: string; response: {} }) => {
         this.userRegister = data.response;
         this.resetForm();
         console.log("user inscrit", this.userRegister);

@@ -12,11 +12,14 @@ export class BackOfficeService {
 
   }
 
-  getUser() {
+  getUsers() {
     return this.http.get(`${environment.BASE_API_URL}/user`);
   }
   validerDoc(dataForm, userId) {
     return this.http.put(`${environment.BASE_API_URL}/user/${userId}/valider-doc`, dataForm);
 
+  }
+  getUser(userId) {
+    return this.http.get(`${environment.BASE_API_URL}/user/${userId}`);
   }
 }

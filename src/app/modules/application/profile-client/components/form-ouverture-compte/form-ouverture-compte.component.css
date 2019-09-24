@@ -1,8 +1,6 @@
 .border-2 {
      border-width:0.25rem !important;
 }
-.ng2-pdf-viewer-container{
-     width: 400px;
-     height:400px;
-     
+.border-1 {
+     border-width:0.025rem !important;
 }
