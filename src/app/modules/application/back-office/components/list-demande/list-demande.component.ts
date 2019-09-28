@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { BackOfficeService } from '../../services/back-office.service';
 import { environment } from 'src/environments/environment';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -10,7 +10,10 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class ListDemandeComponent implements OnInit {
 
-  usersDemande;
+  // usersDemande;
+  @Input()
+  usersToValidDemande;
+  
   userValidateDoc;
   userToLoad;
   form: {
@@ -31,25 +34,22 @@ export class ListDemandeComponent implements OnInit {
     }
   }
   ngOnInit() {
-    this.getUsers();
+    // this.getUsers();
   }
-  getUsers() {
-    this.backofficeService.getUsers().subscribe((data: { status: String; response: [] }) => {
-      this.usersDemande = data.response;
-
-
-      console.log("users", this.usersDemande);
-
-
-    });
-  }
+  // getUsers() {
+  //   this.backofficeService.getUsers().subscribe((data: { status: String; response: [] }) => {
+  //     this.usersDemande = data.response;
+  //     console.log("users", this.usersDemande);
+  //   });
+  // }
   chargerUser(userId) {
     console.log("userId", userId);
     this.backofficeService.getUser(userId)
       .subscribe((data: { status: string; response: {} }) => {
         this.userToLoad = data.response;
         console.log("userToLoad", this.userToLoad);
-        this.initForm();
+        console.log("etatphoto", this.userToLoad.photoArevoir);
+         this.initForm();
       });
   }
   initForm() {
@@ -64,11 +64,9 @@ export class ListDemandeComponent implements OnInit {
     console.log("usercni", this.form.cniArevoir);
     this.backofficeService.validerDoc(this.form, userId)
       .subscribe((data: { status: string; response: [] }) => {
-
         this.userValidateDoc = data.response;
-        console.log("userValidDoc", this.userValidateDoc)
-
-
+        console.log("userValidDoc", this.userValidateDoc);
+        // this.getUsers();
       });
 
   }

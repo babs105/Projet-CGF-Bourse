@@ -17,6 +17,10 @@ const routes: Routes = [
     loadChildren: './modules/application/back-office/back-office.module#BackOfficeModule',
   },
   {
+    path: 'profilage',
+    loadChildren: './modules/application/profilage/profilage.module#ProfilageModule',
+  },
+  {
     path: 'connexion',
     loadChildren: './modules/general/connexion/connexion.module#ConnexionModule',
   },

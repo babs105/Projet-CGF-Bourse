@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BackOfficeService } from './services/back-office.service';
 
 @Component({
   selector: 'app-back-office',
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./back-office.component.css']
 })
 export class BackOfficeComponent implements OnInit {
+  allUsers
+  constructor(private backofficeService: BackOfficeService) {
+    this.getUsers();
+  }
 
-  constructor() { }
 
   ngOnInit() {
   }
 
+  getUsers() {
+    this.backofficeService.getUsers().subscribe((data: { status: String; response: [] }) => {
+      this.allUsers = data.response;
+      console.log("users", this.allUsers);
+    });
+  }
 }

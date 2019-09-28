@@ -1,14 +1,14 @@
 <div class="row p-4">
     <div class="col-12 col-sm-12 col-md-12 col-xl-12">
-        <ul class="nav nav-tabs " style="font-size:20px;" id="myTab">
+        <ul class="nav nav-tabs " style="font-weight: 600;font-size:20px" id="myTab">
             <li class="nav-item">
                 <a class="nav-link active" id="tab-javascript" data-toggle="tab" href="#content-javascript">
                     Validation Document
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" id="tab-css" data-toggle="tab" href="#content-css">
-                    Validation Compte
+                <a class="nav-link" id="tab-css" (click)="getUsers()" data-toggle="tab" href="#content-css">
+                    Création Compte
                 </a>
             </li>
             <li class="nav-item">
@@ -17,15 +17,14 @@
                 </a>
             </li>
         </ul>
-
         <div class="tab-content" id="myTabContent">
             <div class="tab-pane fade show active" id="content-javascript">
                 <!-- <app-form-ouverture-compte></app-form-ouverture-compte> -->
-                <app-list-demande></app-list-demande>
+                <app-list-demande [usersToValidDemande]="allUsers"></app-list-demande>
 
             </div>
             <div class="tab-pane fade" id="content-css">
-                CSS stands for Cascading Style Sheets. ...
+                <app-valider-compte [usersToCreateCompte]="allUsers"></app-valider-compte>
             </div>
             <div class="tab-pane fade " id="content-bootstrap">
                 Bootstrap is a free front-end framework for faster and easier web development...

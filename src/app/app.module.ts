@@ -11,13 +11,12 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 
-import { BackOfficeModule } from './modules/application/back-office/back-office.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    NotFoundComponent
+    NotFoundComponent,
   ],
   imports: [
     // BrowserModule.withServerTransition({ appId: 'cgf-bourse' }),
@@ -26,7 +25,6 @@ import { BackOfficeModule } from './modules/application/back-office/back-office.
     HeaderModule,
     FooterModule,
     FormsModule,
-    BackOfficeModule
   ]
 })
 export class AppModule { }

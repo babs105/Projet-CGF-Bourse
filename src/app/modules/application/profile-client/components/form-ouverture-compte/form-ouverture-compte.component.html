@@ -1,19 +1,19 @@
 <div class="row  text-primary my-4 border-bottom border-primary border-2">
     <div class="col-sm-2"></div>
     <div class="col-sm-8 " style="font-weight: 600">
-        <h4 class=" text-center w-100 p-3 m-0 ">Ouverture Compte Epargne</h4>
+        <h4 class=" text-center w-100 p-3 m-0 ">Demande d'ouverture de Compte Epargne</h4>
     </div>
     <div class="col-sm-2 ">
         <a style="font-size: 24px" *ngIf="userLogin?.commentaire" href="#modalCommentaire" data-toggle="modal">
             <i class="mw-50 mh-50 position:relative far fa-bell" style="width :30px;height:25px">
-                <h4 class="mw-50 mh-50 border rounded-circle bg-danger text-center text-white mb-0"
-                    style="width :25px;height:25px;position:absolute;left:5%;top:-10%">
-                    !</h4>
+                <h4 class="mw-15 mh-15 border rounded-circle bg-danger text-center text-white mb-0"
+                    style="width :15px;height:15px;position:absolute;left:6%;top:-0.005%">
+                </h4>
             </i>
         </a>
     </div>
 </div>
-<form class="p-3 font-weight-bold bg-light border border-primary border-1 ">
+<form class="p-3 font-weight-bold bg-light border border-primary border-1 " *ngIf="userLogin">
     <h6 class="mb-3">IDENTITE</h6>
     <div class="form-group">
         <label for="myGenre" class="text-primary">Genre *</label>
@@ -108,13 +108,13 @@
             <div class="row mt-3">
                 <div class="col-sm-2 ">
                     <div class="d-flex justify-content-center">
-                        <img class=" mw-100 mh-100 rounded-circle" (click)="showImg(photoSrc)"
-                            style="height:40px;width:40px" [src]="_d.bypassSecurityTrustUrl(photoRemoteSrc)">
+                        <img class=" mw-100 mh-100 rounded-circle" style="height:40px;width:40px"
+                            [src]="_d.bypassSecurityTrustUrl(photo)">
                     </div>
                 </div>
                 <div class="col-sm-8 mb-2">
                     <div class="d-flex justify-content-center">
-                        <label class="w-100 btn btn-outline-primary" for="myPhoto">Selectionner photo
+                        <label class="w-100 btn btn-outline-primary" for="myPhoto">Photo
                             <input type="file" id="myPhoto" #photoRef name="photo"
                                 (change)="chargerPhoto(photoRef.files)" class="form-control-file" hidden>
                         </label>
@@ -125,7 +125,7 @@
                 <div class="col-sm-12">
                     <div class="alert alert-success" *ngIf="fileTof?.photo">
                         <button type="button" class="close" data-dismiss="alert">x</button>
-                        Fichier Photo envoyé avec success
+                        Photo envoyée avec success
                     </div>
                     <div class="alert-danger" *ngIf="userLogin?.photoArevoir">
                         Veuillez revoir la photo svp
@@ -138,13 +138,13 @@
                 <div class="col-sm-2 ">
                     <div class="d-flex justify-content-center">
 
-                        <img class=" mw-100 mh-100 rounded-circle" (click)="showImg(cniSrc)"
-                            style="height:40px;width:40px" [src]="_d.bypassSecurityTrustUrl(cniSrc)">
+                        <img class=" mw-100 mh-100 rounded-circle" style="height:40px;width:40px"
+                            [src]="_d.bypassSecurityTrustUrl(cni)">
                     </div>
                 </div>
                 <div class="col-sm-8 mb-2">
                     <div class="d-flex justify-content-center">
-                        <label class="w-100 btn btn-outline-primary" for="myCni">sélectionner Carte d'identité
+                        <label class="w-100 btn btn-outline-primary" for="myCni">Carte d'Identité Nationale
                             <input type="file" id="myCni" #cniRef name="cni" (change)="chargerCni(cniRef.files)"
                                 class="form-control-file" hidden>
                         </label>
@@ -155,7 +155,7 @@
                 <div class="col-sm-12">
                     <div class="alert alert-success" *ngIf="fileCn?.cni">
                         <button type="button" class="close" data-dismiss="alert">x</button>
-                        Fichier CNI envoyé avec success
+                        CNI envoyée avec success
                     </div>
                     <div class="alert-danger" *ngIf="userLogin?.cniArevoir">
                         Veuillez revoir la CNI svp
@@ -168,13 +168,13 @@
                 <div class="col-sm-2 ">
                     <div class="d-flex justify-content-center">
 
-                        <img class=" mw-100 mh-100 rounded-circle" (click)="showImg(factureSrc)"
-                            style="height:40px;width:40px" [src]="_d.bypassSecurityTrustUrl(factureSrc)">
+                        <img class=" mw-100 mh-100 rounded-circle" style="height:40px;width:40px"
+                            [src]="_d.bypassSecurityTrustUrl(facture)">
                     </div>
                 </div>
                 <div class="col-sm-8 mb-2">
                     <div class="d-flex justify-content-center">
-                        <label class="w-100 btn btn-outline-primary" for="myFacture">Sélectionner Facture
+                        <label class="w-100 btn btn-outline-primary" for="myFacture">Justificatif d'adresse
                             <input type="file" id="myFacture" #factureRef name="facture"
                                 (change)="chargerFacture(factureRef.files)" class="form-control-file" hidden>
                         </label>
@@ -185,7 +185,7 @@
                 <div class="col-sm-12">
                     <div class="alert alert-success" *ngIf="fileFac?.facture">
                         <button type="button" class="close" data-dismiss="alert">x</button>
-                        Fichier facture envoyé avec success
+                        Justificatif d'adresse envoyé avec success
                     </div>
                     <div class="alert-danger" *ngIf="userLogin?.factureArevoir">
                         Veuillez revoir la facture svp
@@ -197,7 +197,8 @@
 </form>
 <div class="row p-3 ">
     <div class="col-12 col-sm-4 mx-auto">
-        <button type="button" class="btn btn-block btn-primary" (click)=envoyerForm()>ENVOYER</button>
+        <button type="button" class="btn btn-block btn-primary" style="background-color: #294070;"
+            (click)=envoyerForm()>ENVOYER</button>
     </div>
 </div>
 <div class="row">
@@ -210,15 +211,15 @@
         </p>
     </div> -->
 </div>
-<div class="row m-4">
+<!-- <div class="row m-4">
     <div class="col-12 col-sm-8 mx-auto ">
         <p class="text-center alert-danger">Pour pouvoir telecharger ou signer la convention vos documents
             justificatifs doivent etre
             validés</p>
 
     </div>
-</div>
-<form>
+</div> -->
+<!-- <form>
     <fieldset [disabled]="!userLogin?.etatDossier">
         <div class="form-row">
             <div class="col-12 col-sm-4 mx-auto ">
@@ -230,7 +231,7 @@
                 </pdf-viewer>
 
 
-                <!-- ! <img class="w-100 " [src]="_d.bypassSecurityTrustUrl(conventionSrc)"> -->
+                 <img class="w-100 " [src]="_d.bypassSecurityTrustUrl(conventionSrc)"> 
                 <label class="w-100 btn btn-primary" for="myConvention">Envoyer la convention
                     <input type="file" #conventionRef name="convention" id="myConvention"
                         (change)="chargerConvention(conventionRef.files)" class="form-control-file" hidden>
@@ -238,13 +239,10 @@
             </div>
         </div>
     </fieldset>
-</form>
+</form> -->
 
 
-<div *ngIf="showImgInModal" style="position: fixed; top: 5%; left: 5%; width: 100%; height: 700px; background: gray;">
-    <div (click)="hideImg()" style="position: absolute; right: 5%; top: 5%; color: white; cursor: pointer;">Fermer</div>
-    <img width="90%" height="100%" [src]="_d.bypassSecurityTrustUrl(imgToShow)">
-</div>
+
 
 <!-- modal commentaire -->
 <div class="modal" id="modalCommentaire" data-backdrop="static" data-keyboard="false">

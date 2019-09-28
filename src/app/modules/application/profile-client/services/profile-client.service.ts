@@ -39,5 +39,18 @@ export class ProfileClientService {
     return this.http.put(`${environment.BASE_API_URL}/user/${userId}/attach-convention`, fileConvention);
 
   }
+  getCompte(userId) {
+    return this.http.get(`${environment.BASE_API_URL}/compte/${userId}`);
+
+  }
+  getComptes() {
+    return this.http.get(`${environment.BASE_API_URL}/compte`);
+  }
+  profilageClient(data) {
+    return this.http.post(`${environment.BASE_API_URL}/profilage/souscrire-produit`, data)
+  }
+  getProfilage(userId) {
+    return this.http.get(`${environment.BASE_API_URL}/profilage/${userId}`);
+  }
 
 }

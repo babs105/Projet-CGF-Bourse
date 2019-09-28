@@ -7,9 +7,11 @@ import { FormOuvertureCompteComponent } from './components/form-ouverture-compte
 // import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 // import { ImageViewerModule } from 'ng2-image-viewer';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+import { FormProfilageComponent } from './components/form-profilage/form-profilage.component';
+import { InfoCompteComponent } from './components/info-compte/info-compte.component';
 
 @NgModule({
-  declarations: [ProfileClientComponent, FormOuvertureCompteComponent],
+  declarations: [ProfileClientComponent, FormOuvertureCompteComponent, InfoCompteComponent, FormProfilageComponent],
   imports: [
     CommonModule,
     ProfileClientRoutingModule,
@@ -17,7 +19,9 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
     PdfViewerModule
   ],
   exports: [
-    ProfileClientComponent
+    ProfileClientComponent,
+    InfoCompteComponent,
+    FormProfilageComponent
   ]
 })
 export class ProfileClientModule { }

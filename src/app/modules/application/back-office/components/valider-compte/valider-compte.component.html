@@ -1,23 +1,27 @@
 <h4 class="text-center p-3 my-4 text-primary border-bottom border-primary border-2" style="font-weight: 600"> Liste des
-    demandes d'ouverture de Compte
+    comptes à créer
 </h4>
-
+<!-- <div class="row">
+    <div class="col-sm-12 alert alert-success" *ngIf="userValidateDoc">
+        <button type="button" class="close" data-dismiss="alert">x</button>
+        Requête traitée avec success!
+    </div>
+</div> -->
 
 <div class="row">
     <div class="col-12 col-sm-12">
-        <div class="accordion" id="accordionExample">
-            <div *ngFor="let user of usersToValidDemande;let i=index">
-                <div class="card" *ngIf="user.demandeOuverture===true">
-                    <div class="card-header " id="heading{{i}}" style="background-color:#4493D2">
+        <div class="accordion" id="accordionExample1">
+            <div *ngFor="let user of usersToCreateCompte;let i=index">
+                <div class="card" *ngIf="user?.etatDossier===true">
+                    <div class="card-header" id="heading{{i}}" style="background-color:#4493D2">
                         <h5 class="mb-0">
-                            <a class="text-white" (click)="chargerUser(user._id)" data-toggle="collapse"
-                                href="#collapse{{i}}">
+                            <a class="text-white" data-toggle="collapse" href="#collapseOne{{i}}">
                                 {{user.prenom }} {{user.nom}}
                             </a>
                         </h5>
                     </div>
                 </div>
-                <div id="collapse{{i}}" class="collapse" data-parent="#accordionExample">
+                <div id="collapseOne{{i}}" class="collapse" data-parent="#accordionExample1">
                     <div class="card-body bg-light border border-primary border-1 ">
                         <div class="row">
                             <div class="col-12 col-sm-6 ">
@@ -70,18 +74,11 @@
                                 <form>
                                     <div class="row">
                                         <div class="col-12 col-sm-8">
-                                            <h3>Photo</h3>
+                                            <h5>Photo</h5>
                                             <a href="#modalPhoto{{i}}" data-toggle="modal">
                                                 <img class=" img-fluid rounded w-50 h-50"
                                                     src="{{fileRemoteSrc}}{{user.photo}}">
                                             </a>
-                                            <div class="custom-control custom-switch">
-                                                <input type="checkbox" class="custom-control-input" id="etatPhoto{{i}}"
-                                                    name="photoArevoir" [(ngModel)]="form.photoArevoir">
-                                                <label class="custom-control-label font-weight-bold text-primary"
-                                                    for="etatPhoto{{i}}">A
-                                                    revoir</label>
-                                            </div>
                                             <div class="modal" id="modalPhoto{{i}}" data-keyboard="false">
                                                 <div class="modal-dialog ">
                                                     <div class="modal-content  ">
@@ -97,19 +94,13 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-12 col-sm-8">
-                                            <h3>Carte d'identité Nationale</h3>
+                                            <h5>Carte d'identité Nationale</h5>
 
                                             <a href="#modalCni{{i}}" data-toggle="modal">
                                                 <img class="img-fluid rounded w-50 h-50"
                                                     src="{{fileRemoteSrc}}{{user.cni}}">
                                             </a>
-                                            <div class="custom-control custom-switch">
-                                                <input type="checkbox" class="custom-control-input" id="etatCni{{i}}"
-                                                    value="true" name="cniArevoir" [(ngModel)]="form.cniArevoir">
-                                                <label class="custom-control-label font-weight-bold text-primary"
-                                                    for="etatCni{{i}}">A
-                                                    revoir</label>
-                                            </div>
+
                                             <div class="modal" id="modalCni{{i}}" data-keyboard="false">
                                                 <div class="modal-dialog ">
                                                     <div class="modal-content  ">
@@ -124,19 +115,12 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-12 col-sm-8">
-                                            <h3>Justificatif d'adresse</h3>
+                                            <h5>Justificatif d'adresse</h5>
                                             <a href="#modalFacture{{i}}" data-toggle="modal">
                                                 <img class="img-fluid rounded w-50 h-50"
                                                     src="{{fileRemoteSrc}}{{user.facture}}">
                                             </a>
-                                            <div class="custom-control custom-switch">
-                                                <input type="checkbox" class="custom-control-input"
-                                                    id="etatfacture{{i}}" value="true" name="factureArevoir"
-                                                    [(ngModel)]="form.factureArevoir">
-                                                <label class="custom-control-label font-weight-bold text-primary"
-                                                    for="etatfacture{{i}}">A
-                                                    revoir</label>
-                                            </div>
+
                                             <div class="modal" id="modalFacture{{i}}" data-keyboard="false">
                                                 <div class="modal-dialog ">
                                                     <div class="modal-content">
@@ -156,22 +140,22 @@
                                             Requête traitée avec success!
                                         </div> -->
 
-                                        <div class="col-12 col-sm-6 form-group">
+                                        <!-- <div class="col-12 col-sm-6 form-group">
                                             <label for="myComment "
                                                 class="text-primary font-weight-bold">Commentaire</label>
                                             <textarea id="myComment" name="commentaire" [(ngModel)]="form.commentaire"
                                                 class="form-control" rows="3"></textarea>
-                                        </div>
+                                        </div> -->
                                         <div class="col-12 col-sm-6">
-                                            <button class=" mt-5 btn btn-primary" (click)="validerDoc(user._id)"
+                                            <button class=" mt-5 btn btn-primary" (click)="CreateCompte(user._id)"
                                                 style="background-color: #294070">
-                                                Envoyer</button>
+                                                Créer Compte</button>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="col-sm-12 alert alert-success" *ngIf="userValidateDoc">
+                                    <div class="row my-2">
+                                        <div class="col-sm-6 alert alert-success" *ngIf="userValidCompte">
                                             <button type="button" class="close" data-dismiss="alert">x</button>
-                                            Requête envoyée avec success!
+                                            Compte épargne créé avec success!
                                         </div>
                                     </div>
                                 </form>
