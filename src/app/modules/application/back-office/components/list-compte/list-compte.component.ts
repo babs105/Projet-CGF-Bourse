@@ -16,6 +16,7 @@ export class ListCompteComponent implements OnInit {
   userCompte
   constructor(private backofficeService: BackOfficeService) { }
 
+  searchText;
   ngOnInit() {
   }
  getCompte(userId){

@@ -15,6 +15,7 @@ export class ValiderCompteComponent implements OnInit {
   // usersDemande;
   userValidCompte
   userToLoad;
+  searchText;
   // form: {
   //   userId: String
   //   commentaire: String
