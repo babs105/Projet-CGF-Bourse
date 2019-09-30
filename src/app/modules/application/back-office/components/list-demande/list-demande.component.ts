@@ -16,6 +16,7 @@ export class ListDemandeComponent implements OnInit {
   
   userValidateDoc;
   userToLoad;
+  searchText;
   form: {
     photoArevoir: Boolean,
     factureArevoir: Boolean,
@@ -32,6 +33,7 @@ export class ListDemandeComponent implements OnInit {
       commentaire: ""
 
     }
+    this.searchText="";
   }
   ngOnInit() {
     // this.getUsers();

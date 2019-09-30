@@ -11,7 +11,7 @@
 <div class="row">
     <div class="col-12 col-sm-12">
         <div class="accordion" id="accordionExample">
-            <div *ngFor="let user of usersToValidDemande | search:searchText;let i=index">
+            <div *ngFor="let user of usersToValidDemande|search:searchText;let i=index">
                 <div class="card" *ngIf="user.demandeOuverture===true">
                     <div class="card-header " id="heading{{i}}" style="background-color:#4493D2">
                         <h5 class="mb-0">
