@@ -15,11 +15,11 @@ export class InfoCompteComponent implements OnInit {
   comptes;
   @Input()
   profilage
-
+  userId
   constructor(
-    // private activedRoute:ActivatedRoute,private profileClientService: ProfileClientService
+     private activedRoute:ActivatedRoute,private profileClientService: ProfileClientService
   ) {
-    // this.userId = this.activedRoute.snapshot.paramMap.get('userId');
+     this.userId = this.activedRoute.snapshot.paramMap.get('userId');
   }
   ngOnInit() {
     // this.getCompte();
@@ -41,10 +41,10 @@ export class InfoCompteComponent implements OnInit {
   //     this.comptes = data.response;
   //   });
   // }
-  // getProfilage(){
-  //   this.profileClientService.getProfilage(this.userId).subscribe((data:{status:string;response:[]})=>{
-  //     this.profilage=data.response;
-  //     console.log("profilage",this.profilage)
-  //   });
-  // }
+  getProfilage(){
+    this.profileClientService.getProfilage(this.userId).subscribe((data:{status:string;response:[]})=>{
+      this.profilage=data.response;
+      console.log("profilage",this.profilage)
+    });
+  }
 }

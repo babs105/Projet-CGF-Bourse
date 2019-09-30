@@ -62,8 +62,9 @@ export class ListDemandeComponent implements OnInit {
   }
   validerDoc(userId) {
     console.log("userid", userId);
-    console.log("usertof", this.form.photoArevoir);
-    console.log("usercni", this.form.cniArevoir);
+    console.log("tofArevoir", this.form.photoArevoir);
+    console.log("cniArevoir", this.form.cniArevoir);
+    console.log("facArevoir", this.form.factureArevoir);
     this.backofficeService.validerDoc(this.form, userId)
       .subscribe((data: { status: string; response: [] }) => {
         this.userValidateDoc = data.response;

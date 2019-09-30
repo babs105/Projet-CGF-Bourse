@@ -21,7 +21,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>{{userCompte?._id}}</td>
+                        <td>{{userCompte?.numCompte}}</td>
 
                         <td>{{userCompte?.solde}}</td>
                     </tr>
@@ -36,7 +36,7 @@
             <div class="card ">
                 <div class="card-header" style="background-color:#4493D2">
                     <h5 class="mb-0">
-                        <a class="text-white" data-toggle="collapse" href="#collapse1">
+                        <a class="text-white" (click)="getProfilage()" data-toggle="collapse" href="#collapse1">
                             Placement
                         </a>
                     </h5>
