@@ -54,7 +54,8 @@
 
         <div class="col-12 col-sm-4 form-group">
             <label class="text-primary" for="myDate">Date de naissance *</label>
-            <input type="date" id="myDate" name=" dateNaissance" [(ngModel)]="form.dateNaissance" class="form-control">
+            <input type="date" id="myDate" [value]="form.dateNaissance" name=" dateNaissance"
+                [(ngModel)]="form.dateNaissance" class="form-control">
         </div>
         <div class="col-12 col-sm-4 form-group ">
             <label class="text-primary" for="myLieuNais">Lieu de naissance *</label>

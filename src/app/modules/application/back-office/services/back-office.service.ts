@@ -26,4 +26,12 @@ export class BackOfficeService {
     return this.http.post(`${environment.BASE_API_URL}/compte/create-compte`, userId)
 
   }
+  getComptes() {
+    return this.http.get(`${environment.BASE_API_URL}/compte`);
+
+  }
+  getCompte(userId) {
+    return this.http.get(`${environment.BASE_API_URL}/compte/${userId}`);
+
+  }
 }

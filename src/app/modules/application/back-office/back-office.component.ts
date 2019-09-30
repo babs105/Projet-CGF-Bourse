@@ -7,7 +7,9 @@ import { BackOfficeService } from './services/back-office.service';
   styleUrls: ['./back-office.component.css']
 })
 export class BackOfficeComponent implements OnInit {
-  allUsers
+  allUsers;
+  allComptes
+  
   constructor(private backofficeService: BackOfficeService) {
     this.getUsers();
   }
@@ -22,4 +24,11 @@ export class BackOfficeComponent implements OnInit {
       console.log("users", this.allUsers);
     });
   }
+  getComptes(){
+    this.backofficeService.getComptes().subscribe((data: { status: String; response: [] }) => {
+      this.allComptes = data.response;
+      console.log("allComptes ", this.allComptes );
+    });
+  }
+ 
 }

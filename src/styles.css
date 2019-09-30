@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import '../node_modules/@syncfusion/ej2-base/styles/material.css';
+/* @import '../node_modules/@syncfusion/ej2-base/styles/material.css';
 @import '../node_modules/@syncfusion/ej2-buttons/styles/material.css';
 @import '../node_modules/@syncfusion/ej2-dropdowns/styles/material.css';
 @import '../node_modules/@syncfusion/ej2-inputs/styles/material.css';
@@ -8,8 +8,24 @@
 @import '../node_modules/@syncfusion/ej2-popups/styles/material.css';
 @import '../node_modules/@syncfusion/ej2-splitbuttons/styles/material.css';
 @import '../node_modules/@syncfusion/ej2-pdfviewer/styles/material.css';
-@import '../node_modules/@syncfusion/ej2-notifications/styles/material.css';
+@import '../node_modules/@syncfusion/ej2-notifications/styles/material.css'; */
 
+html { font-size: 1rem; }
+
+@media (min-width: 576px) {
+.titre{font-size: 0.0025rem;}
+    h2 { font-size:0.0025rem; }
+    p{ font-size: 0.05; }
+}
+@media (min-width: 768px) {
+    html { font-size: 0.25rem; }
+}
+@media (min-width: 992px) {
+    html { font-size: 0.5rem; }
+}
+@media (min-width: 1200px) {
+    html { font-size: 1rem; }
+}
 
 body {
   color: black;

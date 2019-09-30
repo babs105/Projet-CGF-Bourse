@@ -1,8 +1,9 @@
 import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import { ProfileClientService } from '../../services/profile-client.service';
-import { ActivatedRoute } from '@angular/router';
+
 import { DomSanitizer } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment.prod';
+import { DatePipe } from '@angular/common';
 @Component({
   selector: 'app-form-ouverture-compte',
   templateUrl: './form-ouverture-compte.component.html',
@@ -77,8 +78,10 @@ export class FormOuvertureCompteComponent implements OnInit {
 
   initializeForm() {
     this.form = this.userLogin;
+    // const datePipe = new DatePipe('fr-FR');
+    // this.form.dateNaissance = datePipe.transform(this.userLogin.dateNaissance, 'dd/MM/yyyy');
     this.photo = this.filesSrc + this.userLogin.photo;
-    console.log("tooooofff", this.photo)
+    console.log("date", this.form.dateNaissance);
     this.cni = this.filesSrc + this.userLogin.cni;
     this.facture = this.filesSrc + this.userLogin.facture;
   }
@@ -156,16 +159,6 @@ export class FormOuvertureCompteComponent implements OnInit {
 
       console.log("fileconvention", this.fileConventionResponse)
     });
-  }
-
-
-  showImg(url) {
-    this.imgToShow = url;
-    this.showImgInModal = true;
-  }
-  hideImg(url) {
-    this.imgToShow = null;
-    this.showImgInModal = false;
   }
 }
 
