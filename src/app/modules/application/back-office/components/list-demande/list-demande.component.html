@@ -1,12 +1,17 @@
 <h4 class="text-center p-3 my-4 text-primary border-bottom border-primary border-2" style="font-weight: 600"> Liste des
     demandes d'ouverture de Compte
 </h4>
-
+<div class="row ">
+    <form class="form-inline p-3 mx-auto">
+        <input type="text" class="form-control mx-2" name="search" [(ngModel)]="searchText" placeholder="rechercher">
+        <i class="fas fa-search" style="font-size:35px;color:#4493D2"></i>
+    </form>
+</div>
 
 <div class="row">
     <div class="col-12 col-sm-12">
         <div class="accordion" id="accordionExample">
-            <div *ngFor="let user of usersToValidDemande;let i=index">
+            <div *ngFor="let user of usersToValidDemande | search:searchText;let i=index">
                 <div class="card" *ngIf="user.demandeOuverture===true">
                     <div class="card-header " id="heading{{i}}" style="background-color:#4493D2">
                         <h5 class="mb-0">

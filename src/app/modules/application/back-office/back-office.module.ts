@@ -7,11 +7,13 @@ import { BackOfficeComponent } from './back-office.component';
 import { ListDemandeComponent } from './components/list-demande/list-demande.component';
 import { ValiderCompteComponent } from './components/valider-compte/valider-compte.component';
 import { ListCompteComponent } from './components/list-compte/list-compte.component';
+import { SearchPipe } from './search.pipe';
 
 @NgModule({
   declarations: [BackOfficeComponent, ListDemandeComponent,
     ValiderCompteComponent,
-    ListCompteComponent],
+    ListCompteComponent,
+    SearchPipe],
   imports: [
     CommonModule,
     BackOfficeRoutingModule,
